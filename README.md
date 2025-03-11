@@ -1,82 +1,32 @@
-[Mozc - a Japanese Input Method Editor designed for multi-platform](https://github.com/google/mozc)
-===================================
+# MozcSKK
+## MozcSKKとは
 
-Copyright 2010-2025 Google LLC
+MozcSKKとは、googleの日本語入力システムであるMozcを使用し、  
+SKKを再現したものです(予定)  
+ひとまずWindows向けに作ります。他のプラットフォームへの対応は未定です。
+## 特徴(目標)
+* skkの弱点である同音異義語を直前の文章からの予測変換で対応  
+(ただし、変換を操るという良さを損わない程度に収めること)  
+* 編集モードや、変換周りの、細かなキー割り当て
+* google日本語入力とSKKの辞書、ローマ字テーブルに対応
+* 配列のプリセットの組み込み
+* 全角カナ、半角ｶﾅ、アルファベットの他に、英語変換に対応  
+(カタカナ英語からの変換と翻訳)
+* あわよくば流行りに乗っかってAIによる変換
 
-Mozc is a Japanese Input Method Editor (IME) designed for multi-platform such as
-Android OS, Apple macOS, Chromium OS, GNU/Linux and Microsoft Windows.  This
-OpenSource project originates from
-[Google Japanese Input](http://www.google.com/intl/ja/ime/).
+このへんを目標に進めていく予定
+## ライセンスに関して
+使用、複製、改変、配布などはどうぞご自由に。  
 
-Mozc is not an officially supported Google product.
+また、このプロジェクトの作成で使用したリポジトリの作者様へ、  
+もしも権利関係でなにかしらの問題があった場合は、twitterのDMに連絡してください。
 
-Build Status
-------------
+## 謝辞
+[Google/Mozc](https://github.com/google/mozc)  
+このプロジェクトのベースです。  
 
-| Linux | Windows | macOS | Android lib |
-|:-----:|:-------:|:-----:|:-----------:|
-| [![Linux](https://github.com/google/mozc/actions/workflows/linux.yaml/badge.svg)](https://github.com/google/mozc/actions/workflows/linux.yaml) | [![Windows](https://github.com/google/mozc/actions/workflows/windows.yaml/badge.svg)](https://github.com/google/mozc/actions/workflows/windows.yaml) | [![macOS](https://github.com/google/mozc/actions/workflows/macos.yaml/badge.svg)](https://github.com/google/mozc/actions/workflows/macos.yaml) | [![Android lib](https://github.com/google/mozc/actions/workflows/android.yaml/badge.svg)](https://github.com/google/mozc/actions/workflows/android.yaml) |
+[azooKey-Desktop](https://github.com/azooKey/azooKey-Desktop)  
+機能を参考にしています。
 
-
-What's Mozc?
-------------
-For historical reasons, the project name *Mozc* has two different meanings:
-
-1. Internal code name of Google Japanese Input that is still commonly used
-   inside Google.
-2. Project name to release a subset of Google Japanese Input in the form of
-   source code under OSS license without any warranty nor user support.
-
-In this repository, *Mozc* means the second definition unless otherwise noted.
-
-Detailed differences between Google Japanese Input and Mozc are described in [About Branding](docs/about_branding.md).
-
-Build Instructions
-------------------
-
-* [How to build Mozc for Android](docs/build_mozc_for_android.md): for Android library (`libmozc.so`)
-* [How to build Mozc for Linux](docs/build_mozc_for_linux.md): for Linux desktop
-* [How to build Mozc for macOS](docs/build_mozc_in_osx.md): for macOS build
-* [How to build Mozc for Windows](docs/build_mozc_in_windows.md): for Windows
-
-Release Plan
-------------
-
-tl;dr. **There is no stable version.**
-
-As described in [About Branding](docs/about_branding.md) page, Google does
-not promise any official QA for OSS Mozc project.  Because of this,
-Mozc does not have a concept of *Stable Release*.  Instead we change version
-number every time when we introduce non-trivial change.  If you are
-interested in packaging Mozc source code, or developing your own products
-based on Mozc, feel free to pick up any version.  They should be equally
-stable (or equally unstable) in terms of no official QA process.
-
-[Release History](docs/release_history.md) page may have additional
-information and useful links about recent changes.
-
-License
--------
-
-All Mozc code written by Google is released under
-[The BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause).
-For third party code under [src/third_party](src/third_party) directory,
-see each sub directory to find the copyright notice.  Note also that
-outside [src/third_party](src/third_party) following directories contain
-third party code.
-
-### [src/data/dictionary_oss/](src/data/dictionary_oss)
-Mixed.
-See [src/data/dictionary_oss/README.txt](src/data/dictionary_oss/README.txt)
-
-### [src/data/test/dictionary/](src/data/test/dictionary)
-The same to [src/data/dictionary_oss/](src/data/dictionary_oss).
-See [src/data/dictionary_oss/README.txt](src/data/dictionary_oss/README.txt)
-
-### [src/data/test/stress_test/](src/data/test/stress_test)
-Public Domain.  See the comment in
-[src/data/test/stress_test/sentences.txt](src/data/test/stress_test/sentences.txt)
-
-### [src/data/unicode/](src/data/unicode)
-UNICODE, INC. LICENSE AGREEMENT.
-See each file header for details.
+[nathancorvussolis/corvusskk](https://github.com/nathancorvussolis/corvusskk)  
+このプロジェクトの作成、またSKKを使うきっかけをくれました。
