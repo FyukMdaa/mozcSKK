@@ -1,123 +1,105 @@
 # src/
 
-Directory of the source code.
+ソースコードのディレクトリ。
 
-## Overview of components and directories
+## コンポーネントとディレクトリの概要
 
 ```
 +------------+            +------------+            +------------+
-| Server     | <--------> | Client     | <--------> | UI         |
-+------------+  Protocol  +------------+  Protocol  +------------+
-| Session    |            | Platform   |
+| サーバー   | <--------> | クライアント | <--------> | UI         |
++------------+  プロトコル +------------+  プロトコル +------------+
+| セッション |            | プラットフォーム |
 +------------+            +------------+
-| Converter  |
+| コンバータ |
 +------------+
-| Dictionary |
+| 辞書       |
 +------------+
 ```
 
-Note: Platform is used for various components for platform specific
-requirements.
+注: プラットフォームはプラットフォーム固有の要件に使用されます。
 
-### Platform
+### プラットフォーム
 
-*   [android/](android/)
-    *   Android specific implementation.
-    *   Note: Mozc does not contain the client UI implementation for Android.
-*   [unix/](unix/)
-    *   Linux specific implementation.
 *   [win32/](win32/)
-    *   Windows specific implementation.
-*   [mac/](mac/)
-    *   macOS specific implementation.
-*   [ios/](ios/)
-    *   iOS specific implementation.
-    *   Note: Mozc does not officially support iOS build.
+    *   Windows固有の実装。
 
-### Build
+### ビルド
 
 *   [build_tools/](build_tools/)
-    *   Utilities used for build (e.g. code generation).
+    *   ビルドに使用されるユーティリティ（例: コード生成）。
 *   [bazel/](bazel/)
-    *   Build rules and tools for Bazel build.
+    *   Bazelビルドのためのビルドルールとツール。
 *   [gyp/](gyp/)
-    *   Build rules and tools for GYP.
+    *   GYPのためのビルドルールとツール。
 *   [protobuf/](protobuf/)
-    *   Build rules and tools of GYP for Protocol Buffers.
+    *   Protocol BuffersのためのGYPのビルドルールとツール。
 
-### Base
+### ベース
 
 *   [base/](base/)
-    *   Fundamental libraries for generic purposes.
+    *   汎用の基本ライブラリ。
 *   [data/](data/)
-    *   Directory and subdirectories of data files.
+    *   データファイルのディレクトリとサブディレクトリ。
 *   [third_party/](third_party/)
-    *   Third party libraries (e.g. Abseil).
+    *   サードパーティライブラリ（例: Abseil）。
 *   [testing/](testing/)
-    *   Libraries for testing.
+    *   テスト用ライブラリ。
 *   [usage_stats/](usage_stats/)
-    *   Libraries for usage statistics.
-    *   Note: Mozc does not use usage statistics.
+    *   使用統計のためのライブラリ。
+    *   注: Mozcは使用統計を使用しません。
 
-### Protocol
+### プロトコル
 
 *   [protocol/](protocol/)
-    *   Protocol definitions of function API (e.g. API between client and
-        server).
+    *   機能APIのプロトコル定義（例: クライアントとサーバー間のAPI）。
 *   [config/](config/)
-    *   Libraries to manage user configurations.
+    *   ユーザー設定を管理するライブラリ。
 *   [request/](request/)
-    *   Libraries of request used for text conversion.
+    *   テキスト変換に使用されるリクエストのライブラリ。
 
-### Client / Server
+### クライアント / サーバー
 
 *   [client/](client/)
-    *   Libraries of client code.
-    *   Note: The main function of the client is in each platform directory.
+    *   クライアントコードのライブラリ。
+    *   注: クライアントのメイン関数は各プラットフォームディレクトリにあります。
 *   [server/](server/)
-    *   Libraries of server code.
-    *   The main function is in this directory.
+    *   サーバーコードのライブラリ。
+    *   メイン関数はこのディレクトリにあります。
 *   [ipc/](ipc/)
-    *   Libraries of IPC to communicate between client, server and other
-        processes.
+    *   クライアント、サーバー、および他のプロセス間の通信のためのIPCライブラリ。
 
-### Session
+### セッション
 
 *   [session/](session/)
-    *   Libraries of state management between user interactions and text
-        conversion.
+    *   ユーザーのインタラクションとテキスト変換の間の状態管理のライブラリ。
 *   [composer/](composer/)
-    *   Libraries of text composing (e.g. Romaji-Hiragana conversion).
+    *   テキスト作成のライブラリ（例: ローマ字からひらがなへの変換）。
 *   [transliteration/](transliteration/)
-    *   Libraries of script type transliteration (e.g. half-width Katakana,
-        full-width Ascii).
+    *   スクリプトタイプの翻字のライブラリ（例: 半角カタカナ、全角英数字）。
 
-### Converter
+### コンバータ
 
 *   [engine/](engine/)
-    *   Libraries to manage converter libraries.
+    *   コンバータライブラリを管理するライブラリ。
 *   [data_manager/](data_manager/)
-    *   Libraries to manage converter data.
+    *   コンバータデータを管理するライブラリ。
 *   [converter/](converter/)
-    *   Libraries of text conversion (e.g. Hiragana to Kanji exact match
-        conversion).
+    *   テキスト変換のライブラリ（例: ひらがなから漢字への完全一致変換）。
 *   [rewriter/](rewriter/)
-    *   Libraries for additional conversions (e.g. date input, symbol input, zip
-        code input).
+    *   追加の変換のためのライブラリ（例: 日付入力、記号入力、郵便番号入力）。
 *   [prediction/](prediction/)
-    *   Libraries of text prediction (e.g. Hiragana to Kanji prefix match
-        conversion).
+    *   テキスト予測のライブラリ（例: ひらがなから漢字への接頭辞一致変換）。
 
-### Dictionary
+### 辞書
 
 *   [dictionary/](dictionary/)
-    *   Libraries of dictionary lookup (e.g. Hiragana key to possible words).
+    *   辞書検索のライブラリ（例: ひらがなキーから可能な単語への変換）。
 *   [storage/](storage/)
-    *   Libraries of dictionary data storage (e.g. LOUDS, etc.).
+    *   辞書データストレージのライブラリ（例: LOUDSなど）。
 
 ### UI
 
 *   [renderer/](renderer/)
-    *   UI application of candidate words.
+    *   候補単語のUIアプリケーション。
 *   [gui/](gui/)
-    *   GUI applications for configurations.
+    *   設定用のGUIアプリケーション。

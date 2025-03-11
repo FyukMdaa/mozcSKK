@@ -1,11 +1,8 @@
-How to build Mozc in Windows
-============================
+WindowsでMozcをビルドする方法
 
-[![Windows](https://github.com/google/mozc/actions/workflows/windows.yaml/badge.svg)](https://github.com/google/mozc/actions/workflows/windows.yaml)
+## 概要
 
-## Summary
-
-If you are not sure what the following commands do, please check the descriptions below and make sure the operations before running them.
+以下のコマンドが何をするのか分からない場合は、説明を確認し、実行前に操作を確認してください。
 
 ```
 python -m pip install six requests
@@ -18,194 +15,169 @@ python build_tools/build_qt.py --release --confirm_license
 python build_mozc.py gyp
 python build_mozc.py build -c Release package
 
-# Install Mozc
+# Mozcをインストール
 out_win\Release\Mozc64.msi
 ```
 
-Hint: You can also download `Mozc64.msi` from GitHub Actions. Check [Build with GitHub Actions](#build-with-github-actions) for details.
+ヒント: Bazelを使用してMozcをビルドすることもできます（実験的）。詳細は以下を参照してください。
 
-Hint: You can use Bazel to build Mozc (experimental). For details, please see below.
+## セットアップ
 
-## Setup
+### システム要件
 
-### System Requirements
+64ビット版のWindows 10以降。
 
-64-bit Windows 10 or later.
+### ソフトウェア要件
 
-### Software Requirements
-
-Building Mozc on Windows requires the following software.
+WindowsでMozcをビルドするには、以下のソフトウェアが必要です。
 
   * [Visual Studio 2022 Community Edition](https://visualstudio.microsoft.com/downloads/#visual-studio-community-2022)
-    * [Build Tools for Visual Studio 2022](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022) should also work
-  * Python 3.9 or later with the following pip modules.
+    * [Build Tools for Visual Studio 2022](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)も動作します
+  * Python 3.9以降と以下のpipモジュール。
     * `six`
     * `requests`
-  * `.NET 6` or later (for `dotnet` command).
+  * `.NET 6`以降（`dotnet`コマンド用）。
 
-For additional requirements for building Mozc with Bazel, please see below.
+BazelでMozcをビルドするための追加要件については、以下を参照してください。
 
-### Install pip modules
+### pipモジュールのインストール
 
 ```
 python3 -m pip install six requests
 ```
 
-### Download the repository from GitHub
+### GitHubからリポジトリをダウンロード
 
 ```
-git clone https://github.com/google/mozc.git
+git clone https://github.com/FyukMdaa/mozcSKK.git
 cd mozc\src
 ```
 
-Hereafter you can do all the operations without changing directory.
+以降はディレクトリを変更せずにすべての操作を行うことができます。
 
-### Check out additional build dependencies
+### 追加のビルド依存関係をチェックアウト
 
 ```
 python build_tools/update_deps.py
 ```
 
-In this step, additional build dependencies will be downloaded.
+このステップで、追加のビルド依存関係がダウンロードされます。
 
   * [LLVM 19.1.7](https://github.com/llvm/llvm-project/releases/tag/llvmorg-19.1.7)
   * [Ninja 1.11.0](https://github.com/ninja-build/ninja/releases/download/v1.11.0/ninja-win.zip)
   * [Qt 6.8.0](https://download.qt.io/archive/qt/6.8/6.8.0/submodules/qtbase-everywhere-src-6.8.0.tar.xz)
-  * [.NET tools](../dotnet-tools.json)
-  * [git submodules](../.gitmodules)
+  * [.NET tools](FyukMdaa/mozcSKK/dotnet-tools.json)
+  * [git submodules](FyukMdaa/mozcSKK/.gitmodules)
 
-You can skip this step if you would like to manually download these libraries.
+これらのライブラリを手動でダウンロードする場合は、このステップをスキップできます。
 
-## Build
+## ビルド
 
-### Build Qt
+### Qtのビルド
 
 ```
 python build_tools/build_qt.py --release --confirm_license
 ```
 
-If you would like to manually confirm the Qt license, drop `--confirm_license` option.
+Qtライセンスを手動で確認したい場合は、`--confirm_license`オプションを省略してください。
 
-You can skip this process if you have already installed Qt prebuilt binaries.
+すでにQtのプリビルトバイナリをインストールしている場合は、このプロセスをスキップできます。
 
-### Build Mozc
+### Mozcのビルド
 
-If you have built Qt in the above step, the following commands should be sufficient to build Mozc installers.
+上記のステップでQtをビルドした場合、以下のコマンドでMozcインストーラーをビルドするのに十分です。
 
 ```
 python build_mozc.py gyp
 python build_mozc.py build -c Release package
 ```
 
-If you want to build Mozc without Qt dependencies, specify `--noqt` option as follows.  Note that `mozc_tool.exe` will be built as a mock version that does nothing if you specify `--noqt`.
+Qt依存関係なしでMozcをビルドしたい場合は、以下のように`--noqt`オプションを指定します。`--noqt`を指定すると、`mozc_tool.exe`は何もしないモックバージョンとしてビルドされることに注意してください。
 
 ```
 python build_mozc.py gyp --noqt
 python build_mozc.py build -c Release package
 ```
 
-If you want to build Mozc with your own Qt binaries, specify `--qtdir` option as follows.
+独自のQtバイナリを使用してMozcをビルドしたい場合は、以下のように`--qtdir`オプションを指定します。
 
 ```
 python build_mozc.py gyp --qtdir=<your Qt directory>
 python build_mozc.py build -c Release package
 ```
 
-If you need debug information, you can build debug version of Mozc as follows.
+デバッグ情報が必要な場合は、以下のようにデバッグバージョンのMozcをビルドできます。
 
 ```
 python build_mozc.py build_tools/build_qt.py --release --debug --confirm_license
 python build_mozc.py build -c Debug package
 ```
 
-### Installers
+### インストーラー
 
-You have release build binaries in `out_win\Release\Mozc64.msi`.
+リリースビルドのバイナリは`out_win\Release\Mozc64.msi`にあります。
 
-### Clean up the Tree
+### ツリーのクリーンアップ
 
-To clean up the tree, execute the following. This will remove executables and intermediate files like object files, generated source files, project files, etc.
+ツリーをクリーンアップするには、以下を実行します。これにより、実行ファイルやオブジェクトファイル、生成されたソースファイル、プロジェクトファイルなどの中間ファイルが削除されます。
 
 ```
 python build_mozc.py clean
 ```
 
-## Install Mozc
+## Mozcのインストール
 
-On a 64-bit environment, run the following command (or simply double click the corresponding file).
+64ビット環境では、以下のコマンドを実行するか、対応するファイルをダブルクリックします。
 
 ```
 out_win\Release\Mozc64.msi
 ```
 
-## Uninstall Mozc
+## Mozcのアンインストール
 
-Press Win+R to open the dialog and type `ms-settings:appsfeatures-app`, or on terminal run the following command.
+Win+Rを押してダイアログを開き、`ms-settings:appsfeatures-app`と入力するか、ターミナルで以下のコマンドを実行します。
 
 ```
 start ms-settings:appsfeatures-app
 ```
 
-Then uninstall `Mozc` from the list.
+その後、リストから`Mozc`をアンインストールします。
 
 ---
 
-## Run unit tests
+## ユニットテストの実行
 
-You can run unit tests as follows.
+以下のようにユニットテストを実行できます。
 
 ```
 python build_mozc.py gyp --noqt
 python build_mozc.py runtests -c Release
 ```
 
-Note that you can specify `--qtdir=` option instead of `--noqt` in GYP phase since currently there is no unit test that depends on Qt.
+現在、Qtに依存するユニットテストはないため、GYPフェーズで`--noqt`の代わりに`--qtdir=`オプションを指定することもできます。
 
 ---
 
-## Build with Bazel (experimental)
+## Bazelでビルド（実験的）
 
-Additional requirements:
+追加要件:
 
 * [Bazelisk](https://github.com/bazelbuild/bazelisk)
-  * Bazelisk is a wrapper of [Bazel](https://bazel.build) to use the specific version of Bazel.
-  * [src/.bazeliskrc](../src/.bazeliskrc) controls which version of Bazel is used.
+  * Bazeliskは、特定のバージョンのBazelを使用するための[Bazel](https://bazel.build)のラッパーです。
+  * [src/.bazeliskrc](../src/.bazeliskrc)で使用するBazelのバージョンを制御します。
 * [MSYS2](https://github.com/msys2/msys2)
 
-After running `build_tools/update_deps.py` and `build_tools/build_qt.py`, run the following command instead of `build_mozc.py`:
+`build_tools/update_deps.py`と`build_tools/build_qt.py`を実行した後、`build_mozc.py`の代わりに以下のコマンドを実行します。
 
 ```
 bazelisk --bazelrc=windows.bazelrc build --config oss_windows --config release_build package
 ```
 
-You have release build binaries in `bazel-bin\win32\installer\Mozc64.msi`.
+リリースビルドのバイナリは`bazel-bin\win32\installer\Mozc64.msi`にあります。
 
-### Tips for Bazel setup
+### Bazelセットアップのヒント
 
-* You do not need to install a new JDK just for Mozc.
-* If you installed Bazel via [Scoop](https://scoop.sh), it is recommended to install MSYS2 via Scoop, too.
+* Mozcのためだけに新しいJDKをインストールする必要はありません。
+* [Scoop](https://scoop.sh)を使用してBazelをインストールした場合、MSYS2もScoop経由でインストールすることをお勧めします。
 
 https://bazel.build/install/windows?hl=ja#install-compilers
-
----
-
-## Build with GitHub Actions
-
-GitHub Actions are already set up in [windows.yaml](../.github/workflows/windows.yaml). With that, you can build and install Mozc with your own commit as follows.
-
-1. Fork https://github.com/google/mozc to your GitHub repository.
-2. Push a new commit to your own fork.
-3. Click "Actions" tab on your fork.
-4. Wait until the action triggered with your commit succeeds.
-5. Download `Mozc64.msi` from the action result page if you are using 64-bit Windows.
-6. Install `Mozc64.msi`.
-
-Files in the GitHub Actions page remain available up to 90 days.
-
-You can also find Mozc Installers for Windows in google/mozc repository. Please keep in mind that Mozc is not an officially supported Google product, even if downloaded from https://github.com/google/mozc/.
-
-1. Sign in GitHub.
-2. Check [recent successfull Windows runs](https://github.com/google/mozc/actions/workflows/windows.yaml?query=is%3Asuccess) in google/mozc repository.
-3. Find action in last 90 days and click it.
-4. Download `Mozc64.msi` from the action result page if you are using 64-bit Windows.
-
