@@ -1,4 +1,22 @@
 WindowsでMozcをビルドする方法
+## コマンド一覧
+詳しくはセットアップ以下を確認してください。
+```
+python -m pip install six requests
+# 必要なツールのインストールなので毎回する必要はなし
+
+git clone https://github.com/FyukMdaa/mozcSKK.git --depth 1
+cd mozcSKK\src
+
+python build_tools/update_deps.py
+python build_tools/build_qt.py --release --confirm_license
+python build_mozc.py gyp
+python build_mozc.py build -c Release package
+
+# mozcSKKのインストール
+out_win\Release\Mozc64.msi
+```
+
 ## セットアップ
 
 ### システム要件
