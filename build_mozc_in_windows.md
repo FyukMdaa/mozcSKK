@@ -7,7 +7,7 @@ WindowsでMozcをビルドする方法
 ```
 python -m pip install six requests
 
-git clone https://github.com/google/mozc.git
+git clone https://github.com/google/mozc.git --depth 1
 cd mozcSKK\src
 
 python build_tools/update_deps.py
@@ -49,7 +49,7 @@ python3 -m pip install six requests
 ### GitHubからリポジトリをダウンロード
 
 ```
-git clone https://github.com/FyukMdaa/mozcSKK.git
+git clone https://github.com/FyukMdaa/mozcSKK.git --depth 1
 cd mozcSKK\src
 ```
 
