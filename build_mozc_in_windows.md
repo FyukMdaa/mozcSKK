@@ -1,26 +1,4 @@
 WindowsでMozcをビルドする方法
-
-## 概要
-
-以下のコマンドが何をするのか分からない場合は、説明を確認し、実行前に操作を確認してください。
-
-```
-python -m pip install six requests
-
-git clone https://github.com/google/mozc.git --depth 1
-cd mozcSKK\src
-
-python build_tools/update_deps.py
-python build_tools/build_qt.py --release --confirm_license
-python build_mozc.py gyp
-python build_mozc.py build -c Release package
-
-# Mozcをインストール
-out_win\Release\Mozc64.msi
-```
-
-ヒント: Bazelを使用してMozcをビルドすることもできます（実験的）。詳細は以下を参照してください。
-
 ## セットアップ
 
 ### システム要件
@@ -66,8 +44,8 @@ python build_tools/update_deps.py
   * [LLVM 19.1.7](https://github.com/llvm/llvm-project/releases/tag/llvmorg-19.1.7)
   * [Ninja 1.11.0](https://github.com/ninja-build/ninja/releases/download/v1.11.0/ninja-win.zip)
   * [Qt 6.8.0](https://download.qt.io/archive/qt/6.8/6.8.0/submodules/qtbase-everywhere-src-6.8.0.tar.xz)
-  * [.NET tools](FyukMdaa/mozcSKK/dotnet-tools.json)
-  * [git submodules](FyukMdaa/mozcSKK/.gitmodules)
+  * [.NET tools](dotnet-tools.json)
+  * [git submodules](.gitmodules)
 
 これらのライブラリを手動でダウンロードする場合は、このステップをスキップできます。
 

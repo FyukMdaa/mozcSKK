@@ -16,10 +16,10 @@ SKKを再現したものです(予定)
 
 このへんを目標に進めていく予定
 ## ビルドについて
-[Windowsでのビルドについて](FyukMdaa/mozcSKK/build_mozc_in_windows.md)
+[Windowsでのビルドについて](build_mozc_in_windows.md)
 ## ライセンスに関して
 使用、複製、改変、配布などはどうぞご自由に。  
-また、このプロジェクトは[GoogleMozcLICENSE](FyukMdaa/mozcSKK/GoogleMozcーLICENSE)に従います。
+また、このプロジェクトは[GoogleMozcLICENSE](GoogleMozcーLICENSE)に従います。
 
 また、このプロジェクトの作成で使用したリポジトリの作者様へ、  
 もしも権利関係でなにかしらの問題があった場合は、twitterのDMに連絡してください。
