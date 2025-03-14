@@ -667,7 +667,7 @@ def exec_command(
         f' cwd={cwd}, env={env})'
     )
   else:
-    subprocess.run(command, shell=False, check=True, cwd=cwd, env=env)
+    subprocess.run(command, shell=False, check=True, cwd=cwd, env=env, encoding="utf-8") 
 
 
 def build_host_on_windows(args: argparse.Namespace) -> None:

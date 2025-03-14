@@ -389,7 +389,7 @@ def update_submodules(dryrun: bool = False) -> None:
   if dryrun:
     print(f'dryrun: subprocess.run({command}, shell=True, check=True)')
   else:
-    subprocess.run(command, shell=True, check=True)
+    subprocess.run(command, shell=True, check=True, encoding="utf-8")
 
 
 def exec_command(

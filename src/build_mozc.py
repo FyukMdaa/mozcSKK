@@ -747,7 +747,7 @@ def RunTests(target_platform, configuration, parallel_num):
   for binary in test_binaries:
     binary_filename = os.path.basename(binary)
     xml_path = os.path.join(gtest_report_dir, '%s.xml' % binary_filename)
-    with open(xml_path, 'w') as f:
+    with open(xml_path, 'w', encoding='utf-8') as f:
       f.write(xml_template % binary_filename)
 
   if parallel_num == 1:
