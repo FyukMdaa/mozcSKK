@@ -222,7 +222,7 @@ def GetQtMajorVersion(qtdir: str) -> int:
     return None
   result = subprocess.run([str(moc), '--version'], check=True,
                           stdout=subprocess.PIPE)
-  qt_full_ver = result.stdout.decode('utf-8').split(' ')[1]
+  qt_full_ver = result.stdout.decode('utf-8', errors='ignore').split(' ')[1]
   return int(qt_full_ver.split('.')[0])
 
 
