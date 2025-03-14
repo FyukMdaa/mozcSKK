@@ -50,7 +50,7 @@ python3 -m pip install six requests
 
 ```
 git clone https://github.com/FyukMdaa/mozcSKK.git
-cd mozc\src
+cd mozcSKK\src
 ```
 
 以降はディレクトリを変更せずにすべての操作を行うことができます。
