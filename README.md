@@ -15,6 +15,8 @@ SKKを再現したものです(予定)
 * あわよくば流行りに乗っかってAIによる変換
 
 このへんを目標に進めていく予定
+## ビルドについて
+[Windowsでのビルドについて](FyukMdaa/mozcSKK/build_mozc_in_windows.md)
 ## ライセンスに関して
 使用、複製、改変、配布などはどうぞご自由に。  
 また、このプロジェクトは[GoogleMozcLICENSE](FyukMdaa/mozcSKK/GoogleMozcーLICENSE)に従います。
