@@ -379,6 +379,18 @@ def is_linux() -> bool:
   return os.name == 'posix' and os.uname()[0] == 'Linux'
 
 
+def run_command_with_retry(command, retries=3, delay=5):
+    for attempt in range(retries):
+        try:
+            subprocess.run(command, shell=True, check=True, encoding="utf-8")
+            return
+        except subprocess.CalledProcessError as e:
+            if attempt < retries - 1:
+                print(f"Command failed: {e}. Retrying in {delay} seconds...")
+                time.sleep(delay)
+            else:
+                raise
+
 def update_submodules(dryrun: bool = False) -> None:
   """Run 'git submodule update --init --recursive'.
 
@@ -389,7 +401,7 @@ def update_submodules(dryrun: bool = False) -> None:
   if dryrun:
     print(f'dryrun: subprocess.run({command}, shell=True, check=True)')
   else:
-    subprocess.run(command, shell=True, check=True, encoding="utf-8")
+    run_command_with_retry(command)
 
 
 def exec_command(
