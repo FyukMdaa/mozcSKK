@@ -221,7 +221,7 @@ def GetQtMajorVersion(qtdir: str) -> int:
   if not moc.exists():
     return None
   result = subprocess.run([str(moc), '--version'], check=True,
-                          stdout=subprocess.PIPE)
+                          stdout=subprocess.PIPE, encoding='utf-8')
   qt_full_ver = result.stdout.decode('utf-8', errors='ignore').split(' ')[1]
   return int(qt_full_ver.split('.')[0])
 
