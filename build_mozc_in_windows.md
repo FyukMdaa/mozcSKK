@@ -35,7 +35,6 @@ WindowsでMozcをビルドするには、以下のソフトウェアが必要で
     * `requests`
   * `.NET 6`以降（`dotnet`コマンド用）。
 
-BazelでMozcをビルドするための追加要件については、以下を参照してください。
 
 ### pipモジュールのインストール
 
@@ -152,29 +151,3 @@ python build_mozc.py runtests -c Release
 ```
 
 現在、Qtに依存するユニットテストはないため、GYPフェーズで`--noqt`の代わりに`--qtdir=`オプションを指定することもできます。
-
----
-
-## Bazelでビルド（実験的）
-
-追加要件:
-
-* [Bazelisk](https://github.com/bazelbuild/bazelisk)
-  * Bazeliskは、特定のバージョンのBazelを使用するための[Bazel](https://bazel.build)のラッパーです。
-  * [src/.bazeliskrc](../src/.bazeliskrc)で使用するBazelのバージョンを制御します。
-* [MSYS2](https://github.com/msys2/msys2)
-
-`build_tools/update_deps.py`と`build_tools/build_qt.py`を実行した後、`build_mozc.py`の代わりに以下のコマンドを実行します。
-
-```
-bazelisk --bazelrc=windows.bazelrc build --config oss_windows --config release_build package
-```
-
-リリースビルドのバイナリは`bazel-bin\win32\installer\Mozc64.msi`にあります。
-
-### Bazelセットアップのヒント
-
-* Mozcのためだけに新しいJDKをインストールする必要はありません。
-* [Scoop](https://scoop.sh)を使用してBazelをインストールした場合、MSYS2もScoop経由でインストールすることをお勧めします。
-
-https://bazel.build/install/windows?hl=ja#install-compilers
