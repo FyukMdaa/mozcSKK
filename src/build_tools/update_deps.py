@@ -410,6 +410,7 @@ def exec_command(
       cwd=cwd,
       shell=False,
       stdout=subprocess.PIPE,
+      encoding="utf-8",
       text=True,
   )
   if progress:

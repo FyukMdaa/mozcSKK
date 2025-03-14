@@ -8,7 +8,7 @@ WindowsでMozcをビルドする方法
 python -m pip install six requests
 
 git clone https://github.com/google/mozc.git
-cd mozc\src
+cd mozcSKK\src
 
 python build_tools/update_deps.py
 python build_tools/build_qt.py --release --confirm_license
