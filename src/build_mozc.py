@@ -221,8 +221,8 @@ def GetQtMajorVersion(qtdir: str) -> int:
   if not moc.exists():
     return None
   result = subprocess.run([str(moc), '--version'], check=True,
-                          stdout=subprocess.PIPE, encoding='utf-8')
-  qt_full_ver = result.stdout.decode('utf-8', errors='ignore').split(' ')[1]
+                          stdout=subprocess.PIPE)
+  qt_full_ver = result.stdout.split(' ')[1]
   return int(qt_full_ver.split('.')[0])
 
 
@@ -747,7 +747,7 @@ def RunTests(target_platform, configuration, parallel_num):
   for binary in test_binaries:
     binary_filename = os.path.basename(binary)
     xml_path = os.path.join(gtest_report_dir, '%s.xml' % binary_filename)
-    with open(xml_path, 'w', encoding='utf-8') as f:
+    with open(xml_path, 'w') as f:
       f.write(xml_template % binary_filename)
 
   if parallel_num == 1:
@@ -873,13 +873,14 @@ def ShowHelpAndExit():
   print('See also the comment in the script for typical usage.')
 
 
+
 def main():
   logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
   logging.getLogger().addFilter(ColoredLoggingFilter())
 
   if len(sys.argv) < 2:
     ShowHelpAndExit()
-    return 0
+    return 1
 
   # Move to the Mozc root source directory only once since os.chdir
   # affects functions in os.path and that causes troublesome errors.
