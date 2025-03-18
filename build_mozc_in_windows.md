@@ -1,6 +1,7 @@
 WindowsでMozcをビルドする方法
 ## コマンド一覧
-詳しくはセットアップ以下を確認してください。
+詳しくはセットアップ以下を確認してください。  
+また、以下作業はDeveloper PowerShell for VS (バージョン名)で実行してください
 ```
 # 必要なツールのインストール
 python -m pip install six requests
